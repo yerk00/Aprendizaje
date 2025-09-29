@@ -125,7 +125,7 @@ export default function EstudioDetalle() {
   }
 
   const { pdf } = current;
-  const s = summaries.byFile?.[pdf.file] || {};
+  const s = getSummaryForFile(summaries.byFile, pdf.file) || {};
   const de = s.datosEsenciales || {};
   const bosquejo = Array.isArray(s.bosquejo) ? s.bosquejo : [];
 

@@ -144,7 +144,7 @@ export default function Estudio() {
       {error && <div className="study-error">{error}</div>}
 
       {pdfs.map((pdf, idx) => {
-        const s = summaries.byFile?.[pdf.file] || {};
+        const s = getSummaryForFile(summaries.byFile, pdf.file) || {};
         const de = s.datosEsenciales || {};
         const puntos = normalizePuntosClave(s.puntosClave, 6);
         const slug = slugify(pdf.title || pdf.file || `pdf-${idx}`);

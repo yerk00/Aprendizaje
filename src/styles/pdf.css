@@ -1,28 +1,19 @@
 /* ===== THEME (claro, moderno) ===== */
-:root{
-  --bg:#FAF8F2;
-  --surface:#FFFFFF;
-  --surface-2:#F4F0E8;
-
-  --ink:#3E4C82;          /* texto primario */
-  --muted:#6E7799;        /* texto secundario */
-  --accent:#FA442F;       /* acento */
-
+/* Solo afecta a esta vista */
+.pdfmem-page{
+  --bg:#0b1220;
+  --panel:#0f172a;
+  --panel-2:#0b1430;
+  --text:#e5e7eb;
+  --muted:#9aa4b2;
+  --brand:#7c3aed;
+  --brand-2:#22d3ee;
   --ok:#10b981;
   --warn:#f59e0b;
-  --danger:#E5484D;
-
-  --line:#DCD5C9;         /* borde suave */
-  --line-strong:#CFC7B9;
-
+  --danger:#ef4444;
   --radius:16px;
-  --shadow:0 10px 28px rgba(62,76,130,.12);
-
-  --fast:140ms;
-  --norm:220ms;
-  --slow:420ms;
-  --easing:cubic-bezier(.2,.8,.2,1);
 }
+
 
 /* ===== PAGE ===== */
 .pdfmem-page{display:grid;gap:18px;color:var(--ink)}
