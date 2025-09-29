@@ -1,0 +1,115 @@
+{
+  "pdfs": [
+    {
+      "title": "Panorama de Pablo y Cartas Carcelarias",
+      "file": "/sinopsis.pdf",
+      "order": 1,
+      "notes": [
+        {
+          "id": "p0-n1",
+          "title": "Idea clave — Definiciones base",
+          "author": "A. Pérez",
+          "date": "2025-09-01",
+          "summary": "Marco conceptual inicial, objetivos del capítulo y terminología esencial para el resto del material."
+        },
+        {
+          "id": "p0-n2",
+          "title": "Puntos rápidos — Esquema",
+          "author": "A. Pérez",
+          "date": "2025-09-02",
+          "summary": "Estructura jerárquica del contenido: secciones, subsecciones y flujo recomendado de lectura."
+        }
+      ]
+    },
+    {
+      "title": "Efesios",
+      "file": "/efesios.pdf",
+      "order": 2,
+      "notes": [
+        {
+          "id": "p1-n1",
+          "title": "Resumen ejecutivo",
+          "author": "M. García",
+          "date": "2025-09-03",
+          "summary": "Síntesis de los resultados y aportes; qué recordar en una revisión de 2 minutos."
+        },
+        {
+          "id": "p1-n2",
+          "title": "Fechas y cronología",
+          "author": "M. García",
+          "date": "2025-09-04",
+          "summary": "Línea de tiempo con hitos y orden recomendado de memorización (del más frecuente al menos frecuente)."
+        }
+      ]
+    },
+    {
+      "title": "Filipenses",
+      "file": "/filipenses.pdf",
+      "order": 3,
+      "notes": [
+        {
+          "id": "p2-n1",
+          "title": "Conceptos vs. Ejemplos",
+          "author": "L. Rojas",
+          "date": "2025-09-05",
+          "summary": "Tabla mental: definición corta + ejemplo mínimo para activar la memoria episódica."
+        },
+        {
+          "id": "p2-n2",
+          "title": "Errores comunes",
+          "author": "L. Rojas",
+          "date": "2025-09-06",
+          "summary": "Confusiones típicas y cómo evitarlas en evaluaciones cronometradas."
+        }
+      ]
+    },
+    {
+      "title": "Colosenses",
+      "file": "/colocenses.pdf",
+      "order": 4,
+      "notes": [
+        {
+          "id": "p3-n1",
+          "title": "Checklist de revisión",
+          "author": "C. Flores",
+          "date": "2025-09-07",
+          "summary": "Lista rápida para repasar antes de una sesión: 5 ítems clave, menos de 60 segundos."
+        },
+        {
+          "id": "p3-n2",
+          "title": "Mapa mental breve",
+          "author": "C. Flores",
+          "date": "2025-09-08",
+          "summary": "Nodos principales y relaciones; enfoque en ‘qué conecta con qué’ para retener la estructura."
+        }
+      ]
+    },
+    {
+      "title": "Filemon",
+      "file": "/filemon.pdf",
+      "order": 5,
+      "notes": [
+        {
+          "id": "p4-n1",
+          "title": "Guía de lectura rápida",
+          "author": "Equipo",
+          "date": "2025-09-09",
+          "summary": "Qué buscar en una primera pasada: relación Pablo–Filemón–Onésimo y objetivo pastoral."
+        },
+        {
+          "id": "p4-n2",
+          "title": "Relaciones y personajes",
+          "author": "Equipo",
+          "date": "2025-09-10",
+          "summary": "Mapa de personajes y vínculos para recordar la lógica de la intercesión y la restitución."
+        }
+      ]
+    }
+  ],
+    "youtube": [
+    "https://youtu.be/yJgym5MGzM4?si=Ql6hHMUMDQkF7d_F",
+    "https://youtu.be/gks8CQX5mwQ?si=vXkDVbt559PvMKk8",
+    "https://youtu.be/AG4jqCUapng?si=CAb-yFHy57NfWHfc",
+    "https://youtu.be/wNySA_IEHbM?si=vsd8VqinRUWtaADt"
+  ]
+}

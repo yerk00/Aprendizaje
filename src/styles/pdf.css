@@ -1,0 +1,179 @@
+/* ===== THEME (claro, moderno) ===== */
+:root{
+  --bg:#FAF8F2;
+  --surface:#FFFFFF;
+  --surface-2:#F4F0E8;
+
+  --ink:#3E4C82;          /* texto primario */
+  --muted:#6E7799;        /* texto secundario */
+  --accent:#FA442F;       /* acento */
+
+  --ok:#10b981;
+  --warn:#f59e0b;
+  --danger:#E5484D;
+
+  --line:#DCD5C9;         /* borde suave */
+  --line-strong:#CFC7B9;
+
+  --radius:16px;
+  --shadow:0 10px 28px rgba(62,76,130,.12);
+
+  --fast:140ms;
+  --norm:220ms;
+  --slow:420ms;
+  --easing:cubic-bezier(.2,.8,.2,1);
+}
+
+/* ===== PAGE ===== */
+.pdfmem-page{display:grid;gap:18px;color:var(--ink)}
+
+/* ===== HEADER ===== */
+.pdfmem-header{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;padding:18px;
+  box-shadow:var(--shadow);
+  animation:fadeUp var(--norm) var(--easing);
+}
+.pdfmem-title{margin:0 0 6px;font-size:24px;font-weight:800;letter-spacing:.2px}
+.pdfmem-subtitle{margin:0;color:var(--muted);font-size:14px}
+.pdfmem-error{
+  color:#7a0d0d;background:#FDECEC;border:1px solid #F3B7B7;
+  padding:10px 12px;border-radius:12px
+}
+
+/* ===== DÍAS / CONTROLES ===== */
+.day-switch{display:grid;gap:12px;position:sticky;top:8px;z-index:5}
+.day-pills{
+  display:flex;flex-wrap:wrap;gap:8px;overflow:auto;padding-bottom:2px;
+  scrollbar-width: thin;
+}
+.pill{
+  padding:8px 12px;border-radius:999px;border:1px solid var(--line);
+  background:#FFF;color:var(--ink);cursor:pointer;font-size:13px;font-weight:700;
+  transition:transform var(--fast) var(--easing), border-color var(--norm) var(--easing), box-shadow var(--norm) var(--easing);
+}
+.pill:hover{transform:translateY(-1px);border-color:var(--line-strong);box-shadow:0 6px 18px rgba(62,76,130,.10)}
+.pill.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(250,68,47,.18)}
+
+/* ===== STATS + PROGRESO ===== */
+.day-stats{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.progressbar{
+  flex:1;min-width:200px;height:12px;border-radius:999px;overflow:hidden;
+  background:var(--surface-2);border:1px solid var(--line);
+  position:relative;
+}
+.progressbar .fill{
+  height:100%;background:var(--accent);
+  transition:width var(--slow) var(--easing);
+  position:relative;
+}
+/* Rayas animadas sutiles para sensación de progreso */
+.progressbar .fill::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(45deg, rgba(255,255,255,.35) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.35) 50%, rgba(255,255,255,.35) 75%, transparent 75%, transparent);
+  background-size:18px 18px;
+  opacity:.35;animation:stripe 2.4s linear infinite;
+}
+@keyframes stripe{to{background-position:18px 0}}
+.stats-text{color:var(--muted);font-size:13px}
+
+.day-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  padding:8px 12px;border-radius:12px;border:1px solid var(--line);
+  background:#FFF;color:var(--ink);cursor:pointer;font-weight:700;
+  transition:transform var(--fast) var(--easing), border-color var(--norm) var(--easing), box-shadow var(--norm) var(--easing), background var(--norm) var(--easing);
+}
+.btn:hover{transform:translateY(-1px);border-color:var(--line-strong);box-shadow:0 6px 18px rgba(62,76,130,.10)}
+.btn.primary{background:#FFF;border-color:var(--accent);box-shadow:0 0 0 3px rgba(250,68,47,.18)}
+.btn.subtle{opacity:.9}
+.btn.ok{background:rgba(16,185,129,.10);border-color:rgba(16,185,129,.40);color:#0D6E57}
+.btn.warn{background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.45);color:#8A5C07}
+.btn.ghost{background:#FFF}
+
+/* ===== PRACTICE (bloque guía) ===== */
+.practice{
+  border:1px solid var(--line);border-radius:14px;padding:14px;
+  background:var(--surface);box-shadow:0 2px 10px rgba(62,76,130,.06);
+}
+.practice-card{
+  border:1px solid var(--line);border-radius:14px;padding:16px;background:#FFF;
+  display:grid;gap:12px;box-shadow:0 2px 10px rgba(62,76,130,.06);
+}
+.pc-head{display:flex;align-items:center;gap:12px}
+.pc-index{
+  width:40px;height:40px;border-radius:999px;display:grid;place-items:center;font-weight:800;color:var(--ink);
+  background:#FFF;border:2px solid var(--accent);
+  box-shadow:0 2px 8px rgba(250,68,47,.15)
+}
+.pc-title{flex:1;font-weight:800}
+.pc-timer{
+  font-variant-numeric:tabular-nums;color:var(--ink);font-weight:800;
+  padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:#FFF;
+}
+/* pulso opcional si agregas .is-playing en tu JS */
+.pc-timer.is-playing{box-shadow:0 0 0 0 rgba(250,68,47,.22);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 10px rgba(250,68,47,0)}}
+
+.pc-body p{margin:6px 0;color:var(--ink)}
+.pc-actions{display:flex;gap:8px;justify-content:flex-end}
+
+/* ===== CARDS DE MEMORIZACIÓN ===== */
+.cards-grid{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+}
+@media (max-width:1024px){ .cards-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))} }
+@media (max-width:560px){ .cards-grid{grid-template-columns:1fr} }
+
+.mcard{
+  border:1px solid var(--line);border-radius:14px;padding:14px;background:#FFF;
+  display:grid;gap:12px;
+  transition:transform var(--fast) var(--easing), box-shadow var(--norm) var(--easing), border-color var(--norm) var(--easing);
+  box-shadow:0 2px 10px rgba(62,76,130,.06);
+  min-height:170px;
+}
+.mcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--line-strong)}
+.mcard.done{outline:2px solid rgba(16,185,129,.35)}
+.mcard.again{outline:2px solid rgba(245,158,11,.35)}
+
+.mhead{display:flex;gap:10px;align-items:center}
+.idx{
+  width:36px;height:36px;border-radius:999px;display:grid;place-items:center;font-weight:800;color:var(--ink);
+  background:#FFF;border:2px solid var(--accent);
+}
+.mtitle{margin:0;font-size:16px;font-weight:800}
+
+.mbody{
+  position:relative;border:1px solid var(--line);border-radius:12px;padding:12px;min-height:96px;background:var(--surface-2)
+}
+.mbody .line{margin:4px 0;color:var(--ink)}
+.mbody .blur{
+  position:absolute;inset:0;border-radius:12px;
+  backdrop-filter:blur(5px);background:rgba(255,255,255,.55);
+  border:1px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:13px;
+}
+.mbody.reveal .blur{display:none}
+
+/* Acciones de cada card */
+.mactions{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.right{display:flex;gap:8px}
+
+/* ===== UTILIDADES PARA TEXTOS CLAVE ===== */
+.kpi{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:#FFF;font-weight:800}
+.kpi--date{border-color:var(--line);background:var(--surface-2)}
+.kpi--author{border-color:var(--accent);box-shadow:0 0 0 3px rgba(250,68,47,.12)}
+
+/* ===== FOCUS & REDUCE MOTION ===== */
+.btn:focus-visible,
+.pill:focus-visible,
+.mcard:focus-within{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:12px;
+}
+@keyframes fadeUp{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}

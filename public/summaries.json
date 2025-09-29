@@ -1,0 +1,163 @@
+{
+  "byFile": {
+    "/sinopsis.pdf": {
+        "objetivoEstudio": "Comprender en forma concisa quién fue Pablo, su conversión, sus viajes misioneros y el contexto inmediato de la redacción de las Cartas carcelarias.",
+        "resumenBreve": "Síntesis de la vida y misión de Pablo, desde su conversión hasta su encarcelamiento en Roma, resaltando el contexto y el mensaje de las Cartas carcelarias.",
+        "datosEsenciales": {
+            "autor": "Pablo (Saulo de Tarso)",
+            "lugar": "Tarso (nacimiento), Roma (arresto domiciliario)",
+            "fecha": "aprox. 60–62 d.C.",
+            "destinatarios": "Comunidades cristianas (Éfeso, Filipos, Colosas y Filemón)",
+            "contexto": "Encarcelamiento en Roma; enseñanza y aliento a comunidades perseguidas"
+        },
+        "temaCentral": "Transformación de Pablo y el mensaje de esperanza en las Cartas carcelarias",
+        "bosquejo": [
+            "Introducción: Saulo de Tarso, ciudadano romano y fariseo, convertido en apóstol tras su encuentro con Cristo.",
+            "Desarrollo: Sus viajes misioneros, la fundación de iglesias, persecuciones y encarcelamientos.",
+            "Clímax: Redacción de las Cartas carcelarias durante su arresto en Roma (60–62 d.C.).",
+            "Aplicación: Mensaje central de esperanza, aliento y guía ética para comunidades cristianas en dificultad."
+        ],
+        "puntosClave": [
+            "Transformación radical: de perseguidor a apóstol tras la visión en Damasco.",
+            "Misionero activo: fundó iglesias en distintas regiones del Imperio Romano.",
+            "Arrestos repetidos: su ministerio continuó a pesar de la persecución.",
+            "Cartas carcelarias: escritas en Roma bajo arresto domiciliario.",
+            "Mensaje central: esperanza, aliento y guía práctica para los creyentes."
+        ]
+        },
+
+    "/efesios.pdf": {
+      "objetivoEstudio": "Entender la visión paulina de la Iglesia como el cuerpo de Cristo y recordar las enseñanzas prácticas para la vida comunitaria y la lucha espiritual.",
+      "resumenBreve": "Visión teológica-pastoral de la Iglesia como cuerpo de Cristo; énfasis en unidad, identidad (judíos y gentiles) y conducta cristiana frente al sincretismo y la persecución.",
+      "datosEsenciales": {
+        "autor": "Pablo (apóstol)",
+        "lugar": "Desde Roma",
+        "fecha": "≈ 61 d.C.",
+        "destinatarios": "Cristianos en Éfeso y probablemente otras iglesias cercanas (carta circular)",
+        "contexto": "Pablo encarcelado; carta con tono teológico-pastoral para consolidar identidad y conducta cristiana frente a sincretismo, presiones paganas y persecución. Iglesia fundada por Pablo en su 3er viaje (~53–54 d.C.)."
+      },
+      "temaCentral": "La Iglesia como cuerpo de Cristo: comunidad nueva (judíos y gentiles) comprada por Cristo para cumplir los propósitos divinos; énfasis en unidad, identidad y vida ética.",
+      "puntosClave": {
+        "personajes": [
+          "Pablo (autor/mentor)",
+          "Timoteo (encargado/local)",
+          "Tíquico (mensajero)",
+          "Priscila y Aquila (influencia local)",
+          "Juan (papel posterior en Éfeso)"
+        ],
+        "fechasImportantes": [
+          "Fundación de la iglesia: ≈ 53–54 d.C.",
+          "Escritura de la carta: ≈ 61 d.C."
+        ],
+        "contextoCulturalReligioso": "Templo de Artemisa; sincretismo religioso; presión social y persecución."
+      },
+      "bosquejo": [
+        "Vocación de la Iglesia (1:1–3:21): alabanza, gracia, salvación por gracia, reconciliación judío/gentil, ministerio de Pablo, oraciones por poder.",
+        "Conducta de la Iglesia (4:1–6:24): unidad, ética/justicia, caminar en el Espíritu, enseñanza sobre matrimonio y familia, lucha espiritual (armadura de Dios).",
+        "Conclusión y saludos (6:21–24)."
+      ],
+      "mnemotecnia": "V-U-J-M-F-L → Vocación, Unidad, Justicia, Matrimonio, Familia, Lucha espiritual. Frase: 'Vive Unido: Justo, Matrimonio, Familia y Lucha'."
+    },
+    "/filipenses.pdf": {
+      "objetivoEstudio": "Recordar por qué Pablo escribió a Filipos (agradecimiento y ánimo) y dominar las ideas centrales: gozo, gratitud, unidad y conducta cristiana en medio de la adversidad.",
+      "resumenBreve": "Carta personal y alegre de Pablo desde la cárcel: agradecimiento por el apoyo económico, exhortación a la unidad, humildad y una vida gozosa en Cristo.",
+      "datosEsenciales": {
+        "autor": "Pablo (apóstol)",
+        "lugar": "Desde Roma",
+        "fecha": "≈ 62 d.C.",
+        "destinatarios": "Cristianos en Filipos (primera iglesia fundada por Pablo en Europa)",
+        "contexto": "Respuesta al apoyo económico de la comunidad; cristianos en Filipos enfrentaban presiones sociales/políticas por negarse a los cultos del emperador."
+      },
+      "temaCentral": "Gozo y gratitud: a pesar del encarcelamiento y la oposición, Pablo mantiene gozo y agradece el apoyo; exhorta a unidad, humildad y conducta práctica coherente con el evangelio.",
+      "puntosClave": {
+        "personajes": [
+          "Pablo (autor/mentor)",
+          "Epafrodito (mensajero y portador de ayuda)",
+          "Lidia (conversión fundacional)",
+          "El carcelero de Filipos (evento fundacional)",
+          "Evodia y Síntique (conflicto interno)",
+          "Timoteo (colaborador)"
+        ],
+        "fechasImportantes": [
+          "Fundación de la iglesia: ≈ 49–51 d.C.",
+          "Escritura de la carta: ≈ 62 d.C."
+        ],
+        "vocabularioEnfasis": "La palabra 'regocijaos' y variantes aparece ≈16 veces, subrayando el tema del gozo."
+      },
+      "bosquejo": [
+        "I. Introducción (1:1–11): saludos y acción de gracias; peticiones por los creyentes.",
+        "II. Circunstancias de Pablo en Roma (1:12–26): ministerio, gozo, dilema entre vivir o morir.",
+        "III. Exhortación práctica (1:27—2:18): unidad, humildad (himno cristológico 2:6–11), conducta.",
+        "IV. Colaboradores y ejemplos (2:19–30): Timoteo, Epafrodito.",
+        "V. Advertencias y esperanzas (3:1–21): cuidado contra falsos confiados, meta de la resurrección.",
+        "VI. Principios para la vida gozosa y conclusión (4:1–23): paz, oración, gratitud por el apoyo económico."
+      ],
+      "mnemotecnia": "G-A-U-D-O = Gozo, Agradecimiento, Unidad, Destreza moral (conducta), Obras de apoyo. Frase: 'GOZAD: Agradeced, Uníos, Dad testimonio'."
+    },
+    "/colocenses.pdf": {
+      "objetivoEstudio": "Reconocer el propósito de la carta: afirmar la supremacía y suficiencia de Cristo frente a enseñanzas sincréticas y recordar las implicaciones prácticas para la vida cristiana.",
+      "resumenBreve": "Defensa de la deidad y suficiencia de Cristo contra enseñanzas sincréticas (gnosticismo parcial, culto a ángeles, ascetismo); afirma que los creyentes están completos en Cristo.",
+      "datosEsenciales": {
+        "autor": "Pablo (apóstol)",
+        "lugar": "Desde Roma",
+        "fecha": "≈ 61 d.C.",
+        "destinatarios": "Iglesia en Colosas (posible envío conjunto con Filemón)",
+        "contexto": "Iglesia influida por filosofías sincréticas; Epafras solicita consejo a Pablo debido a enseñanzas que cuestionan la suficiencia de Cristo."
+      },
+      "temaCentral": "La deidad y completa suficiencia de Jesucristo: Cristo es supremo y suficiente; los creyentes están completos en Él sin necesidad de prácticas o conocimientos adicionales.",
+      "puntosClave": {
+        "personajes": [
+          "Pablo (autor/defensor doctrinal)",
+          "Epafras (fundador/pastor que llevó el problema a Pablo)",
+          "Tíquico (mensajero)",
+          "Onésimo (vínculo con Filemón)",
+          "Otros colaboradores mencionados en salutaciones"
+        ],
+        "fechasImportantes": [
+          "Escritura de la carta: ≈ 61 d.C."
+        ],
+        "peligrosDoctrinales": "Gnosticismo parcial (conocimientos secretos, culto a ángeles), ascetismo, sincretismo que resta valor a Cristo."
+      },
+      "bosquejo": [
+        "I. Introducción (1:1–14): acción de gracias y oración.",
+        "II. Doctrina de Jesucristo (1:15–23): su persona divina y obra redentora.",
+        "III. Ministerio apostólico (1:24—2:7): labor de Pablo y preocupación por la iglesia.",
+        "IV. Advertencia contra falsa filosofía (2:8—3:4): suficiencia de Cristo; peligros espirituales.",
+        "V. Vida práctica (3:5—4:6): santidad y relaciones dentro de la comunidad.",
+        "VI. Conclusión (4:7–18): saludos y colaboradores."
+      ],
+      "mnemotecnia": "S-U-F-I-V-C = Suficiencia (de Cristo), Unidad en la verdad, Falsas filosofías (alerta), Identidad en Cristo, Vida práctica, Colaboradores. Frase: 'SUFICIENTE: Un Cristo Completo'."
+    },
+    "/filemon.pdf": {
+      "objetivoEstudio": "Entender la táctica pastoral de Pablo para lograr reconciliación entre Filemón y Onésimo y recordar las implicaciones éticas (perdón, igualdad en Cristo).",
+      "resumenBreve": "Carta personal de intercesión por Onésimo, esclavo fugitivo convertido; Pablo pide a Filemón que lo reciba como hermano y se ofrece a reparar cualquier daño económico.",
+      "datosEsenciales": {
+        "autor": "Pablo (apóstol)",
+        "lugar": "Desde Roma",
+        "fecha": "≈ 61 d.C.",
+        "destinatarios": "Filemón (líder cristiano en Colosas) y la comunidad de su casa",
+        "contexto": "Onésimo huyó de Filemón, se convirtió bajo la influencia de Pablo; la carta interpone la fraternidad cristiana frente a las normas sociales de la esclavitud."
+      },
+      "temaCentral": "Reconciliación y transformación de relaciones sociales por el evangelio: recibir a Onésimo como hermano en lugar de esclavo, demostrando que la fe en Cristo reconfigura jerarquías sociales.",
+      "puntosClave": {
+        "personajes": [
+          "Pablo (intercesor/autor)",
+          "Filemón (propietario/cristiano líder)",
+          "Onésimo (esclavo fugitivo convertido)",
+          "Epafras y Tíquico (vínculos con Colosas y Filemón)"
+        ],
+        "fechasImportantes": [
+          "Escritura de la carta: ≈ 61 d.C."
+        ],
+        "detallePractico": "Pablo se ofrece a pagar cualquier daño o pérdida económica (Filemón 1:18–19) como táctica persuasiva."
+      },
+      "bosquejo": [
+        "I. Salutación (v.1–3): identificación y saludo.",
+        "II. Acción de gracias y oración (v.4–7): encomio de la fe y amor de Filemón.",
+        "III. Petición personal (v.8–21): intercesión por Onésimo; pedir que lo reciba como hermano; ofrecimiento de reparación de pérdidas; apelación afectiva.",
+        "IV. Conclusión y saludos (v.22–25): disposición para visitar y saludos de colaboradores."
+      ],
+      "mnemotecnia": "P-O-R-R = Perdón, Onésimo, Reconciliación, Restitución (Pablo paga si hace falta). Frase: 'Pablo pide: Onésimo, reconciliación y restitución.'"
+    }
+  }
+}
