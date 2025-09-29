@@ -11,6 +11,19 @@ function slugify(s = "") {
     .replace(/-+/g, "-");
 }
 
+// Encuentra el resumen correcto aunque cambie la carpeta (usa basename)
+function getSummaryForFile(byFile = {}, file = "") {
+  if (!file || !byFile) return null;
+  if (byFile[file]) return byFile[file];
+
+  const base = file.split("/").pop();
+  if (byFile["/" + base]) return byFile["/" + base];
+  if (byFile[base]) return byFile[base];
+
+  const k = Object.keys(byFile).find((kk) => kk.split("/").pop() === base);
+  return k ? byFile[k] : null;
+}
+
 // Normaliza "puntosClave": admite array o objeto {seccion: [...]/"..."}
 function normalizePuntosClave(value, max = 6) {
   if (!value) return [];
@@ -27,9 +40,8 @@ function normalizePuntosClave(value, max = 6) {
       .replace("Vocabulario enfasis", "Vocabulario (énfasis)")
       .replace("Detalle practico", "Detalle práctico");
 
-  if (Array.isArray(value)) {
-    return value.slice(0, max);
-  }
+  if (Array.isArray(value)) return value.slice(0, max);
+
   if (typeof value === "object") {
     for (const [k, v] of Object.entries(value)) {
       if (out.length >= max) break;
@@ -60,6 +72,15 @@ function getProfileName() {
 function getAllProgress() {
   return lsLoad().progress || {};
 }
+function statusForFile(progress = {}, file = "") {
+  if (!file) return "";
+  if (progress[file]?.status) return progress[file].status;
+  const base = file.split("/").pop();
+  if (progress["/" + base]?.status) return progress["/" + base].status;
+  if (progress[base]?.status) return progress[base].status;
+  const k = Object.keys(progress).find((kk) => kk.split("/").pop() === base);
+  return k ? progress[k].status : "";
+}
 
 /* -------------------- Componente -------------------- */
 export default function Estudio() {
@@ -77,7 +98,7 @@ export default function Estudio() {
     let alive = true;
     Promise.all([
       fetch("/material.json", { cache: "no-store" }),
-      fetch("/summaries.json", { cache: "no-store" })
+      fetch("/summaries.json", { cache: "no-store" }),
     ])
       .then(async ([m, s]) => {
         if (!m.ok) throw new Error("No se pudo cargar material.json");
@@ -121,7 +142,13 @@ export default function Estudio() {
   }, [material.pdfs]);
 
   const statusLabel = (st = "") =>
-    st === "done" ? "✔ Cumplido" : st === "so-so" ? "∼ Más o menos" : st === "nope" ? "✖ No pudo" : "";
+    st === "done"
+      ? "✔ Cumplido"
+      : st === "so-so"
+      ? "∼ Más o menos"
+      : st === "nope"
+      ? "✖ No pudo"
+      : "";
 
   return (
     <div className="study-page">
@@ -148,18 +175,20 @@ export default function Estudio() {
         const de = s.datosEsenciales || {};
         const puntos = normalizePuntosClave(s.puntosClave, 6);
         const slug = slugify(pdf.title || pdf.file || `pdf-${idx}`);
-        const goDetail = () => navigate(`/estudio/${slug}`, { state: { pdf, idx } });
+        const goDetail = () =>
+          navigate(`/estudio/${slug}`, { state: { pdf, idx } });
 
-        const st = progress?.[pdf.file]?.status || "";
+        const st = statusForFile(progress, pdf.file);
 
         return (
           <section key={`${pdf.file}-${idx}`} className="study-group">
             <div className="group-head">
-              <div className="group-index">{String(idx + 1).padStart(2, "0")}</div>
+              <div className="group-index">
+                {String(idx + 1).padStart(2, "0")}
+              </div>
               <div className="group-meta">
                 <h2 className="group-title">{pdf.title || pdf.file}</h2>
 
-                {/* Estado guardado (pill opcional) */}
                 {st ? (
                   <div className="tags" style={{ marginTop: 6 }}>
                     <span className="tag">{statusLabel(st)}</span>
@@ -167,7 +196,12 @@ export default function Estudio() {
                 ) : null}
 
                 <div className="group-links">
-                  <a href={pdf.file} target="_blank" rel="noreferrer" className="group-link">
+                  <a
+                    href={pdf.file}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group-link"
+                  >
                     Abrir PDF
                   </a>
                   <button className="group-link as-button" onClick={goDetail}>
@@ -183,13 +217,16 @@ export default function Estudio() {
                 <h3 className="card-title">Ficha técnica</h3>
                 <ul className="meta-list">
                   <li>
-                    <span className="k">Autor:</span> <span className="v">{de.autor || "—"}</span>
+                    <span className="k">Autor:</span>{" "}
+                    <span className="v">{de.autor || "—"}</span>
                   </li>
                   <li>
-                    <span className="k">Lugar:</span> <span className="v">{de.lugar || "—"}</span>
+                    <span className="k">Lugar:</span>{" "}
+                    <span className="v">{de.lugar || "—"}</span>
                   </li>
                   <li>
-                    <span className="k">Fecha:</span> <span className="v">{de.fecha || "—"}</span>
+                    <span className="k">Fecha:</span>{" "}
+                    <span className="v">{de.fecha || "—"}</span>
                   </li>
                 </ul>
                 <div className="tags">
@@ -214,7 +251,11 @@ export default function Estudio() {
               <article className="card link-card" onClick={goDetail}>
                 <h3 className="card-title">Puntos clave</h3>
                 <ul className="bullets">
-                  {puntos.length ? puntos.map((kp, i) => <li key={i}>{kp}</li>) : <li>—</li>}
+                  {puntos.length ? (
+                    puntos.map((kp, i) => <li key={i}>{kp}</li>)
+                  ) : (
+                    <li>—</li>
+                  )}
                 </ul>
               </article>
 

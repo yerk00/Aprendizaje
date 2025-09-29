@@ -25,6 +25,19 @@ function labelize(k = "") {
     .replace("Fechas importantes", "Fechas importantes");
 }
 
+// Encuentra el resumen correcto aunque cambie la carpeta (usa basename)
+function getSummaryForFile(byFile = {}, file = "") {
+  if (!file || !byFile) return null;
+  if (byFile[file]) return byFile[file];
+
+  const base = file.split("/").pop();
+  if (byFile["/" + base]) return byFile["/" + base];
+  if (byFile[base]) return byFile[base];
+
+  const k = Object.keys(byFile).find((kk) => kk.split("/").pop() === base);
+  return k ? byFile[k] : null;
+}
+
 /* -------- Persistencia local sin BD (localStorage) -------- */
 const STORAGE_KEY = "study.v1";
 
@@ -53,7 +66,14 @@ function setPdfStatus(file, status) {
   lsSave(s);
 }
 function getPdfStatus(file) {
-  return lsLoad().progress?.[file]?.status || "";
+  const prog = lsLoad().progress || {};
+  if (!file) return "";
+  if (prog[file]?.status) return prog[file].status;
+  const base = file.split("/").pop();
+  if (prog["/" + base]?.status) return prog["/" + base].status;
+  if (prog[base]?.status) return prog[base].status;
+  const k = Object.keys(prog).find((kk) => kk.split("/").pop() === base);
+  return k ? prog[k].status : "";
 }
 
 /* -------------------- Componente -------------------- */
@@ -73,7 +93,7 @@ export default function EstudioDetalle() {
     let alive = true;
     Promise.all([
       fetch("/material.json", { cache: "no-store" }),
-      fetch("/summaries.json", { cache: "no-store" })
+      fetch("/summaries.json", { cache: "no-store" }),
     ])
       .then(async ([m, s]) => {
         if (!m.ok) throw new Error("No se pudo cargar material.json");
@@ -83,8 +103,7 @@ export default function EstudioDetalle() {
         if (alive) {
           setMaterial(mj);
           setSummaries(sj);
-          // nombre guardado (perfil)
-          setStudent(getProfileName());
+          setStudent(getProfileName()); // nombre guardado (perfil)
         }
       })
       .catch((e) => alive && setError(e.message));
@@ -119,7 +138,9 @@ export default function EstudioDetalle() {
     return (
       <div className="sd-empty">
         <p>No se encontró el material solicitado.</p>
-        <button className="sd-back" onClick={() => navigate(-1)}>Volver</button>
+        <button className="sd-back" onClick={() => navigate(-1)}>
+          Volver
+        </button>
       </div>
     );
   }
@@ -176,7 +197,11 @@ export default function EstudioDetalle() {
             Autor: <strong>{de.autor || "—"}</strong>
             {" · "}Lugar: {de.lugar || "—"}
             {" · "}Fecha: {de.fecha || "—"}
-            {s.temaCentral ? <>{" · "}Tema: <strong>{s.temaCentral}</strong></> : null}
+            {s.temaCentral ? (
+              <>
+                {" · "}Tema: <strong>{s.temaCentral}</strong>
+              </>
+            ) : null}
           </p>
         </div>
         <div className="sd-actions">
@@ -256,7 +281,7 @@ export default function EstudioDetalle() {
         )}
       </section>
 
-      {/* 6. Puntos clave (array u objeto con secciones) */}
+      {/* 6. Puntos clave */}
       <section className="sd-section">
         <h2 className="sd-h2">6. Puntos clave</h2>
         {renderPuntosClave(s.puntosClave)}
@@ -290,7 +315,7 @@ export default function EstudioDetalle() {
             {[
               { key: "done", label: "Cumplido ✔" },
               { key: "so-so", label: "Más o menos ~" },
-              { key: "nope", label: "No pudo ✖" }
+              { key: "nope", label: "No pudo ✖" },
             ].map((opt) => (
               <button
                 key={opt.key}
