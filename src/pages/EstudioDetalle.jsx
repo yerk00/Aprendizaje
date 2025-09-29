@@ -25,17 +25,42 @@ function labelize(k = "") {
     .replace("Fechas importantes", "Fechas importantes");
 }
 
-// Encuentra el resumen correcto aunque cambie la carpeta (usa basename)
-function getSummaryForFile(byFile = {}, file = "") {
-  if (!file || !byFile) return null;
-  if (byFile[file]) return byFile[file];
+/** Busca el resumen correcto por:
+ * 1) clave exacta
+ * 2) la misma clave sin / inicial
+ * 3) mismo nombre de archivo (basename) aunque la carpeta difiera
+ * 4) variantes comunes (colosenses/colocenses) para cubrir typos en JSON
+ */
+function getSummaryForFile(byFile = {}, filePath = "") {
+  if (!byFile || !filePath) return null;
 
-  const base = file.split("/").pop();
-  if (byFile["/" + base]) return byFile["/" + base];
-  if (byFile[base]) return byFile[base];
+  const keys = Object.keys(byFile);
+  const fileNoLead = filePath.replace(/^\/+/, "");
+  const base = filePath.split("/").pop()?.toLowerCase() || "";
 
-  const k = Object.keys(byFile).find((kk) => kk.split("/").pop() === base);
-  return k ? byFile[k] : null;
+  // 1) & 2) exacta
+  if (byFile[filePath]) return byFile[filePath];
+  if (byFile[fileNoLead]) return byFile[fileNoLead];
+  if (byFile["/" + fileNoLead]) return byFile["/" + fileNoLead];
+
+  // 3) por basename
+  const byBase = keys.find(
+    (k) => (k.split("/").pop() || "").toLowerCase() === base
+  );
+  if (byBase) return byFile[byBase];
+
+  // 4) variantes por typo frecuente
+  const typoVariants = [
+    base.replace("colocenses", "colosenses"),
+    base.replace("colosenses", "colocenses"),
+  ];
+  const byVariant = keys.find((k) => {
+    const kb = (k.split("/").pop() || "").toLowerCase();
+    return typoVariants.includes(kb);
+  });
+  if (byVariant) return byFile[byVariant];
+
+  return null;
 }
 
 /* -------- Persistencia local sin BD (localStorage) -------- */
@@ -66,14 +91,7 @@ function setPdfStatus(file, status) {
   lsSave(s);
 }
 function getPdfStatus(file) {
-  const prog = lsLoad().progress || {};
-  if (!file) return "";
-  if (prog[file]?.status) return prog[file].status;
-  const base = file.split("/").pop();
-  if (prog["/" + base]?.status) return prog["/" + base].status;
-  if (prog[base]?.status) return prog[base].status;
-  const k = Object.keys(prog).find((kk) => kk.split("/").pop() === base);
-  return k ? prog[k].status : "";
+  return lsLoad().progress?.[file]?.status || "";
 }
 
 /* -------------------- Componente -------------------- */
@@ -93,7 +111,7 @@ export default function EstudioDetalle() {
     let alive = true;
     Promise.all([
       fetch("/material.json", { cache: "no-store" }),
-      fetch("/summaries.json", { cache: "no-store" }),
+      fetch("/summaries.json", { cache: "no-store" })
     ])
       .then(async ([m, s]) => {
         if (!m.ok) throw new Error("No se pudo cargar material.json");
@@ -107,9 +125,7 @@ export default function EstudioDetalle() {
         }
       })
       .catch((e) => alive && setError(e.message));
-    return () => {
-      alive = false;
-    };
+    return () => { alive = false; };
   }, []);
 
   const current = useMemo(() => {
@@ -138,9 +154,7 @@ export default function EstudioDetalle() {
     return (
       <div className="sd-empty">
         <p>No se encontró el material solicitado.</p>
-        <button className="sd-back" onClick={() => navigate(-1)}>
-          Volver
-        </button>
+        <button className="sd-back" onClick={() => navigate(-1)}>Volver</button>
       </div>
     );
   }
@@ -156,9 +170,7 @@ export default function EstudioDetalle() {
     if (Array.isArray(pk)) {
       return (
         <ul className="sd-list">
-          {pk.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
+          {pk.map((item, i) => <li key={i}>{item}</li>)}
         </ul>
       );
     }
@@ -171,14 +183,8 @@ export default function EstudioDetalle() {
             <article key={i} className="sd-card">
               <h3 className="sd-h3">{labelize(k)}</h3>
               {Array.isArray(v) ? (
-                <ul className="sd-list">
-                  {v.map((x, j) => (
-                    <li key={j}>{x}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>{String(v)}</p>
-              )}
+                <ul className="sd-list">{v.map((x, j) => <li key={j}>{x}</li>)}</ul>
+              ) : (<p>{String(v)}</p>)}
             </article>
           ))}
         </div>
@@ -197,20 +203,12 @@ export default function EstudioDetalle() {
             Autor: <strong>{de.autor || "—"}</strong>
             {" · "}Lugar: {de.lugar || "—"}
             {" · "}Fecha: {de.fecha || "—"}
-            {s.temaCentral ? (
-              <>
-                {" · "}Tema: <strong>{s.temaCentral}</strong>
-              </>
-            ) : null}
+            {s.temaCentral ? <>{" · "}Tema: <strong>{s.temaCentral}</strong></> : null}
           </p>
         </div>
         <div className="sd-actions">
-          <a className="sd-link" href={pdf.file} target="_blank" rel="noreferrer">
-            Abrir PDF
-          </a>
-          <button className="sd-link" onClick={() => navigate(-1)}>
-            Volver
-          </button>
+          <a className="sd-link" href={pdf.file} target="_blank" rel="noreferrer">Abrir PDF</a>
+          <button className="sd-link" onClick={() => navigate(-1)}>Volver</button>
         </div>
       </header>
 
@@ -232,21 +230,11 @@ export default function EstudioDetalle() {
       <section className="sd-section">
         <h2 className="sd-h2">3. Datos esenciales</h2>
         <ul className="sd-list">
-          <li>
-            <strong>Autor:</strong> {de.autor || "—"}
-          </li>
-          <li>
-            <strong>Lugar:</strong> {de.lugar || "—"}
-          </li>
-          <li>
-            <strong>Fecha:</strong> {de.fecha || "—"}
-          </li>
-          <li>
-            <strong>Destinatarios:</strong> {de.destinatarios || "—"}
-          </li>
-          <li>
-            <strong>Contexto:</strong> {de.contexto || "—"}
-          </li>
+          <li><strong>Autor:</strong> {de.autor || "—"}</li>
+          <li><strong>Lugar:</strong> {de.lugar || "—"}</li>
+          <li><strong>Fecha:</strong> {de.fecha || "—"}</li>
+          <li><strong>Destinatarios:</strong> {de.destinatarios || "—"}</li>
+          <li><strong>Contexto:</strong> {de.contexto || "—"}</li>
         </ul>
       </section>
 
@@ -267,11 +255,7 @@ export default function EstudioDetalle() {
               if (parts.length > 1) {
                 const head = parts.shift();
                 const tail = parts.join(":").trim();
-                return (
-                  <li key={i}>
-                    <strong>{head}:</strong> {tail}
-                  </li>
-                );
+                return (<li key={i}><strong>{head}:</strong> {tail}</li>);
               }
               return <li key={i}>{t}</li>;
             })}
@@ -287,7 +271,7 @@ export default function EstudioDetalle() {
         {renderPuntosClave(s.puntosClave)}
       </section>
 
-      {/* 7. Mnemotecnia (si existe) */}
+      {/* 7. Mnemotecnia */}
       {s.mnemotecnia ? (
         <section className="sd-section">
           <h2 className="sd-h2">7. Mnemotecnia</h2>
@@ -315,7 +299,7 @@ export default function EstudioDetalle() {
             {[
               { key: "done", label: "Cumplido ✔" },
               { key: "so-so", label: "Más o menos ~" },
-              { key: "nope", label: "No pudo ✖" },
+              { key: "nope", label: "No pudo ✖" }
             ].map((opt) => (
               <button
                 key={opt.key}
@@ -336,10 +320,8 @@ export default function EstudioDetalle() {
               <>
                 Registrado para <strong>{student}</strong> — estado:{" "}
                 <strong>
-                  {({ done: "Cumplido ✔", "so-so": "Más o menos ~", nope: "No pudo ✖" }[status] ||
-                    "sin marcar")}
-                </strong>
-                .
+                  {({ done: "Cumplido ✔", "so-so": "Más o menos ~", nope: "No pudo ✖" }[status] || "sin marcar")}
+                </strong>.
               </>
             ) : (
               <>Escribe tu nombre y marca el estado de la sesión.</>
